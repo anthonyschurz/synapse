@@ -1,3 +1,7 @@
+.brand-logo {
+  padding-left: 31.25px !important;
+}
+
 #sidebar {
   border-right: 2px solid #bdbdbd;
   height: 1000px
