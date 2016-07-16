@@ -1,0 +1,27 @@
+#sidebar {
+  border-right: 2px solid #bdbdbd;
+  height: 1000px
+}
+
+#find {
+  margin: 10px 0 10px 0;
+  width: calc(75% - 3rem) !important;
+  display:inline-block
+}
+
+.line {
+  display: inline-block;
+}
+
+.icon {
+  padding-left: 30px !important
+}
+
+.active {
+  color: #eeeeee !important
+}
+
+h5 {
+  padding: 10px 0 20px 20px;
+  border-bottom: 1px solid #bdbdbd;
+}

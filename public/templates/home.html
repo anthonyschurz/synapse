@@ -1,15 +1,13 @@
-<h2>Sign In</h2>
-<hr>
-<p ng-if="home.posts.length === 0">No posts yet.</p>
+<!-- <p ng-if="home.posts.length === 0">No posts yet.</p>
 
 <div ng-if="home.posts.length > 0">
 	<div ng-repeat="post in home.posts">
 		<p><strong>{{post.title}}</strong> - {{post.content}}</p><br>
 	</div>
-</div>
+</div> -->
 
 <div ng-show="main.currentUser()">
-	<br>
+	<!-- <br>
 	<h4>Add New Post</h4>
 	<hr>
 	<form ng-show="main.currentUser()" ng-submit="home.createPost()">
@@ -22,5 +20,90 @@
 	    <textarea ng-model="home.new_post.content" class="form-control" id="post-content" placeholder="Share your thoughts."></textarea>
 	  </div>
 	  <input type="submit" value="Add Post" class="btn btn-block btn-info">
-	</form>
-</div>
+	</form> -->
+	<div class="col s3" id="sidebar">
+		<h5>Lead Lists</h5>
+		<!-- Grey navigation panel -->
+		<div class="fixed-action-btn" style="top: 90px; left: 17em;">
+		 <a class="btn-floating btn-large waves-effect waves-light modal-trigger green" href="#modal1">
+			 <i class="large material-icons">add</i>
+		 </a>
+	 </div>
+
+	 <!-- Modal Structure -->
+	  <div id="modal1" class="modal">
+	    <div class="modal-content">
+	      <h4>Modal Header</h4>
+	      <p>A bunch of text</p>
+	    </div>
+	  </div>
+
+	</div>
+
+	<div class="col s9 grey lighten-3">
+			<form id="find">
+				<div class="input-field white">
+	        <input id="search" type="search" required>
+	        <label for="search">search</label>
+				</div>
+	    </form>
+			<div class="line">
+				<i class="fa fa-filter fa-2x icon"></i>
+				<i class="fa fa-save fa-2x icon"></i>
+			</div>
+
+			<table class="white">
+			<thead>
+				<tr>
+						<th data-field="id">First Name</th>
+						<th data-field="name">Last Name</th>
+						<th data-field="price">Email</th>
+						<th data-field="phone">Phone No.</th>
+						<th data-field="job">Job Title</th>
+						<th data-field="linkedin">Company</th>
+						<th data-field="location">Location</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td>Alvin</td>
+					<td>Eclair</td>
+					<td>$0.87</td>
+				</tr>
+				<tr>
+					<td>Alan</td>
+					<td>Jellybean</td>
+					<td>$3.76</td>
+				</tr>
+				<tr>
+					<td>Jonathan</td>
+					<td>Lollipop</td>
+					<td>$7.00</td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<br>
+		<br>
+
+		<br>
+
+		<br>
+
+		<br>
+
+		<br>
+
+		<br>
+
+		<br>
+
+	</div>
+
+	<script>
+	$(document).ready(function(){
+	// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+	$('.modal-trigger').leanModal();
+	});
+</script>

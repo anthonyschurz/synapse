@@ -14,6 +14,7 @@ angular
   ;
 
 
+
 ////////////
 // ROUTES //
 ////////////
@@ -281,6 +282,5 @@ function Account($http, $q, $auth) {
         )
     );
   }
-
 
 }
