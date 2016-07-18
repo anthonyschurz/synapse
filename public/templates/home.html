@@ -1,3 +1,4 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.0/papaparse.js"></script>
 
 	<div class="col s3" id="sidebar">
 		<h5>Lead Lists</h5>
@@ -16,7 +17,7 @@
 
 
 				<form class="upload" method="POST">
-					<input type="file" multiple>
+					<input type="file" id="csv-file">
 						<p id="drop">
 							<i class="fa fa-cloud-upload"></i>
 							Drag & Drop Or Click
@@ -27,6 +28,7 @@
 					  </button>
 					</div>
 				</form>
+
 
 	  </div>
 	</div>
@@ -43,8 +45,7 @@
 				<i class="fa fa-filter fa-2x icon"></i>
 				<i class="fa fa-save fa-2x icon"></i>
 			</div>
-
-			<table class="white">
+			<table class="white" id="results">
 			<thead>
 				<tr>
 						<th data-field="id">First Name</th>
@@ -53,7 +54,6 @@
 						<th data-field="phone">Phone No.</th>
 						<th data-field="job">Job Title</th>
 						<th data-field="linkedin">Company</th>
-						<th data-field="location">Location</th>
 				</tr>
 			</thead>
 
@@ -75,15 +75,6 @@
 				</tr>
 			</tbody>
 		</table>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
 	</div>
 
 	<script>
