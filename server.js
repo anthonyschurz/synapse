@@ -49,30 +49,30 @@ app.put('/api/me', auth.ensureAuthenticated, function (req, res) {
   });
 });
 
-app.get('/api/posts', function (req, res) {
-  Post.find(function (err, allPosts) {
-    if (err) {
-      res.status(500).json({ error: err.message });
-    } else {
-      res.json(allPosts);
-    }
-  });
-});
-
-app.post('/api/posts', auth.ensureAuthenticated, function (req, res) {
-  User.findById(req.user, function (err, user) {
-    var newPost = new Post(req.body);
-    newPost.save(function (err, savedPost) {
-      if (err) {
-        res.status(500).json({ error: err.message });
-      } else {
-        user.posts.push(newPost);
-        user.save();
-        res.json(savedPost);
-      }
-    });
-  });
-});
+// app.get('/api/posts', function (req, res) {
+//   Post.find(function (err, allPosts) {
+//     if (err) {
+//       res.status(500).json({ error: err.message });
+//     } else {
+//       res.json(allPosts);
+//     }
+//   });
+// });
+//
+// app.post('/api/posts', auth.ensureAuthenticated, function (req, res) {
+//   User.findById(req.user, function (err, user) {
+//     var newPost = new Post(req.body);
+//     newPost.save(function (err, savedPost) {
+//       if (err) {
+//         res.status(500).json({ error: err.message });
+//       } else {
+//         user.posts.push(newPost);
+//         user.save();
+//         res.json(savedPost);
+//       }
+//     });
+//   });
+// });
 
 
 /*
