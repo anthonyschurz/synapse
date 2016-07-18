@@ -10,7 +10,8 @@
 
 #sidebar {
   border-right: 2px solid #bdbdbd;
-  height: 1000px
+  margin-bottom: -5000px;
+  padding-bottom: 5000px;
 }
 
 #find {
@@ -19,17 +20,36 @@
   display:inline-block
 }
 
-.icon {
-  padding-left: 30px !important
+h5 {
+  padding: 10px 0 20px 20px;
+  border-bottom: 1px solid #bdbdbd;
+}
+
+#add {
+  left: 80%;
+  height: 45px;
+  width: 45px;
 }
 
 .active {
   color: #eeeeee !important
 }
 
-h5 {
-  padding: 10px 0 20px 20px;
-  border-bottom: 1px solid #bdbdbd;
+.center {
+  margin: auto;
+  width: 50%;
+}
+
+#cloud {
+  font-size: 200px;
+  color: #e0e0e0;
+  padding-top: 100px;
+}
+
+#CTA {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #9e9e9e;
 }
 
 
