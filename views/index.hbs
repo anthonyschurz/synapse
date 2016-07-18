@@ -20,6 +20,8 @@
   <!-- jquery -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.js"></script>
+
   <!-- Compiled and minified Materialize JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 
@@ -37,11 +39,12 @@
 
   <title>Synapse</title>
 </head>
+
 <body ng-controller="MainController as main">
   <nav class="navbar navbar-default indigo darken-4">
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/" class="brand-logo">SYNAPSE</a></li>
+          <li><a href="/" class="brand-logo"><img src="http://i.imgur.com/1e0CcOV.png" id="logo"></a></li>
         </ul>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li ng-show="!main.currentUser()"><a ui-sref="signup">Sign Up</a></li>
@@ -57,7 +60,6 @@
   <div class="row">
     <ui-view>
   </div>
-
 
 </body>
 </html>
