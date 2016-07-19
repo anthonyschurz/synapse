@@ -20,6 +20,11 @@
   display:inline-block
 }
 
+#search {
+  margin: 0 !important;
+  padding-left: 10px;
+}
+
 h5 {
   padding: 10px 0 20px 20px;
   border-bottom: 1px solid #bdbdbd;
@@ -52,6 +57,9 @@ h5 {
   color: #bdbdbd;
 }
 
+#search::-webkit-input-placeholder {
+  font-size: 22px
+}
 
 
 .clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}

@@ -11,11 +11,11 @@
 
 
 			<div class="fixed-action-btn" style="bottom: 20px; left: 30.5px;">
-				<span id="upload" data-action="upload" class="btn indigo">Save</span>
+				<span id="upload" data-action="upload" class="btn grey">Save</span>
 			</div>
 
 			<div class="fixed-action-btn" style="bottom: 20px; left: 140px;">
-				<span id="export" data-action="export" class="btn indigo">Download</span>
+				<span id="export" data-action="export" class="btn grey">Download</span>
 			</div>
 
 	 		<span id"notification" class=""></span>
@@ -25,12 +25,9 @@
 
 
 	<div class="col s9">
-			<form id="find">
-				<div class="input-field white">
-	        <input id="search" type="search" required>
-	        <label for="search">search</label>
+				<div class="input-field white" id="find">
+	        <input id="search" type="text" placeholder="search">
 				</div>
-	    </form>
 
 
 			<table id="csv-table" class="table table-stripped table-bordered white" data-toggle="table">
@@ -54,5 +51,21 @@
 
 	</div>
 
+
 </div>
 </div>
+
+<script>
+
+	 $("#search").keyup(function(){
+			 _this = this;
+			 // Show only matching TR, hide rest of them
+			 $.each($("#csv-table tbody tr"), function() {
+					 if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+							$(this).hide();
+					 else
+							$(this).show();
+			 });
+	 });
+
+</script>
