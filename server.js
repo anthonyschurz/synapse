@@ -6,10 +6,11 @@ var express = require('express'),
     mongoose = require('mongoose'),
     auth = require('./resources/auth'),
     User = require('./models/user'),
-    Post = require('./models/post');
+    Post = require('./models/post')
 
 // require and load dotenv
 require('dotenv').load();
+
 
 // configure bodyParser (for receiving form data)
 app.use(bodyParser.urlencoded({ extended: true }));
