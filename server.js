@@ -25,7 +25,7 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'hbs');
 
 // connect to mongodb
-mongoose.connect('mongodb://localhost/angular_auth');
+mongoose.connect('mongodb://localhost/synapse');
 
 
 /*
@@ -52,30 +52,51 @@ app.put('/api/me', auth.ensureAuthenticated, function (req, res) {
   });
 });
 
-// app.get('/api/posts', function (req, res) {
-//   Post.find(function (err, allPosts) {
-//     if (err) {
-//       res.status(500).json({ error: err.message });
-//     } else {
-//       res.json(allPosts);
-//     }
-//   });
-// });
-//
-// app.post('/api/posts', auth.ensureAuthenticated, function (req, res) {
-//   User.findById(req.user, function (err, user) {
-//     var newPost = new Post(req.body);
-//     newPost.save(function (err, savedPost) {
-//       if (err) {
-//         res.status(500).json({ error: err.message });
-//       } else {
-//         user.posts.push(newPost);
-//         user.save();
-//         res.json(savedPost);
-//       }
-//     });
-//   });
-// });
+app.post('/api/leads', function (req, res) {
+    console.log("posting to leads API")
+
+    // Google Results
+
+    // google.resultsPerPage = 25
+    // var nextCounter = 0
+    //
+    // google('Linkedin Anthony Schurz', function (err, res){
+    //   if (err) console.error(err)
+    //
+    //   for (var i = 0; i < res.links.length; ++i) {
+    //     var link = res.links[i];
+    //     console.log(link.title + ' - ' + link.href)
+    //     console.log(link.description + "\n")
+    //   }
+    //
+    //   if (nextCounter < 4) {
+    //     nextCounter += 1
+    //     if (res.next) res.next()
+    //   }
+    // })
+
+    // var lead = new Lead({
+    //   firstName: ,
+    //   lastName: ,
+    //   email: ,
+    //   phoneNo: ,
+    //   jobTitle: ,
+    //   company:
+    // });
+
+    // user.save(function (err, result) {
+    //   if (err) {
+    //     res.status(500).send({ message: err.message });
+    //   }
+    //   res.send({ token: auth.createJWT(result) });
+    // });
+});
+
+
+app.get('/api/leads', auth.ensureAuthenticated, function (req, res) {
+    console.log("getting from leads API")
+});
+
 
 
 /*
@@ -116,25 +137,6 @@ app.post('/auth/login', function (req, res) {
   });
 });
 
-
-
-google.resultsPerPage = 25
-var nextCounter = 0
-
-google('node.js best practices', function (err, res){
-  if (err) console.error(err)
-
-  for (var i = 0; i < res.links.length; ++i) {
-    var link = res.links[i];
-    console.log(link.title + ' - ' + link.href)
-    console.log(link.description + "\n")
-  }
-
-  if (nextCounter < 4) {
-    nextCounter += 1
-    if (res.next) res.next()
-  }
-})
 
 
 /*

@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
 var postSchema = new Schema({
   title: { type: String },
   content: { type: String }
+  // leads: [{ type: Schema.Types.ObjectId, ref: 'Lead' }]
 });
 
 var Post = mongoose.model('Post', postSchema);
