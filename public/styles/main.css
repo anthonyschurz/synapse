@@ -15,9 +15,13 @@
 }
 
 #find {
-  margin: 10px 0 10px 0;
+  margin: 20px 0 20px 0;
   width: calc(75% - 3rem) !important;
   display:inline-block
+}
+
+#search {
+  margin: 0 !important;
 }
 
 h5 {
@@ -53,6 +57,23 @@ h5 {
 }
 
 
+#search,
+textarea {
+    font-size: 24px;
+    text-indent: 20px;
+}
+
+#search::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #ccc;
+    -webkit-text-fill-color: initial;
+}
+
+
+input[type=text]:focus{
+border-bottom: 1px solid #c5cae9 !important;
+box-shadow: 0 1px 0 0 #1a237e !important;
+}
 
 .clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}
 .clearfix:after{clear:both;}

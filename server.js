@@ -6,7 +6,9 @@ var express = require('express'),
     mongoose = require('mongoose'),
     auth = require('./resources/auth'),
     User = require('./models/user'),
-    Post = require('./models/post')
+    Post = require('./models/post'),
+    google = require('google')
+
 
 // require and load dotenv
 require('dotenv').load();
@@ -113,6 +115,26 @@ app.post('/auth/login', function (req, res) {
     });
   });
 });
+
+
+
+google.resultsPerPage = 25
+var nextCounter = 0
+
+google('node.js best practices', function (err, res){
+  if (err) console.error(err)
+
+  for (var i = 0; i < res.links.length; ++i) {
+    var link = res.links[i];
+    console.log(link.title + ' - ' + link.href)
+    console.log(link.description + "\n")
+  }
+
+  if (nextCounter < 4) {
+    nextCounter += 1
+    if (res.next) res.next()
+  }
+})
 
 
 /*
