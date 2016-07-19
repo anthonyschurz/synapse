@@ -61,7 +61,6 @@ h5 {
 textarea {
     font-size: 24px;
     text-indent: 20px;
-    -webkit-text-fill-color: transparent;
 }
 
 #search::-webkit-input-placeholder,
@@ -72,7 +71,7 @@ textarea::-webkit-input-placeholder {
 
 
 input[type=text]:focus{
-border-bottom: 1px solid #1a237e !important;
+border-bottom: 1px solid #c5cae9 !important;
 box-shadow: 0 1px 0 0 #1a237e !important;
 }
 
