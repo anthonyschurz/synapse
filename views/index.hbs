@@ -17,7 +17,10 @@
   <!-- custom styles -->
   <link rel="stylesheet" type="text/css" href="styles/main.css">
 
+  <!-- JQuery -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  <!-- PapaParse -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.0/papaparse.js"></script>
 
   <!-- Compiled and minified Materialize JavaScript -->
@@ -47,23 +50,48 @@
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li ng-show="!main.currentUser()"><a ui-sref="signup">Sign Up</a></li>
           <li ng-show="!main.currentUser()"><a ui-sref="login">Log In</a></li>
-          <li ng-show="main.currentUser()"><a ui-sref="aboutus">About Us</a></li>
-          <li ng-show="main.currentUser()"><a ui-sref="contactus">Contact Us</a></li>
+          <li ng-show="main.currentUser()"><a data-target="aboutus" class="modal-trigger">About Us</a></li>
+          <li ng-show="main.currentUser()"><a data-target="contactus" class="modal-trigger">Contact Us</a></li>
           <li ng-show="main.currentUser()"><a ui-sref="profile">\{{main.currentUser().displayName}}</a></li>
           <li ng-show="main.currentUser()"><a ui-sref="logout">Log Out</a></li>
         </ul>
       </div>
   </nav>
 
+  <div id="aboutus" class="modal">
+    <div class="modal-content">
+      <h4>About Us</h4>
+      <p>Whether you’re looking to supercharge your CRM with job title information, build marketing segments based on occupation, or pass along candidates to recruiting, Synapse is the enterprise app that allows you to append the latest firmographic information without spending a ton of time searching.</p>
+      <p>To get started, simply click the green button in the sidebar and upload your CSV. You provide the person's first and last name as well as email and phone number (if you have them) and synapse provides the rest.</p>
+      <p>Are you a developer who wants to work on the next version of Synapse? Great! Synapse is an open source project available on github: https://github.com/anthonyschurz/synapse</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat"><i class="fa fa-times" aria-hidden="true"></i></a>
+    </div>
+  </div>
+
+  <div id="contactus" class="modal">
+    <div class="modal-content">
+      <h4>Contact Us</h4>
+      <p>Please email synapse.inquiries@gmail.com. FAQ coming soon 😊</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat"><i class="fa fa-times" aria-hidden="true"></i></a>
+    </div>
+  </div>
+
   <div class="row">
     <ui-view>
   </div>
 
 </body>
+
 <script>
 
-
-$.fn.editableTableWidget=function(e){"use strict";return $(this).each(function(){var t,i=function(){var e=$.extend({},$.fn.editableTableWidget.defaultOptions);return e.editor=e.editor.clone(),e},n=$.extend(i(),e),o=37,r=38,s=39,d=40,a=13,h=27,l=9,f=$(this),c=n.editor.css("position","absolute").hide().appendTo(f.parent()),p=function(e){t=f.find("td:focus"),t.length&&(c.val(t.text()).removeClass("error").show().offset(t.offset()).css(t.css(n.cloneProperties)).width(t.width()).height(t.height()).focus(),e&&c.select())},u=function(){var e,i=c.val(),n=$.Event("change");return t.text()===i||c.hasClass("error")?!0:(e=t.html(),t.text(i).trigger(n,i),void(n.result===!1&&t.html(e)))},g=function(e,t){return t===s?e.next("td"):t===o?e.prev("td"):t===r?e.parent().prev().children().eq(e.index()):t===d?e.parent().next().children().eq(e.index()):[]};c.blur(function(){u(),c.hide()}).keydown(function(e){if(e.which===a)u(),c.hide(),t.focus(),e.preventDefault(),e.stopPropagation();else if(e.which===h)c.val(t.text()),e.preventDefault(),e.stopPropagation(),c.hide(),t.focus();else if(e.which===l)t.focus();else if(this.selectionEnd-this.selectionStart===this.value.length){var i=g(t,e.which);i.length>0&&(i.focus(),e.preventDefault(),e.stopPropagation())}}).on("input paste",function(){var e=$.Event("validate");t.trigger(e,c.val()),e.result===!1?c.addClass("error"):c.removeClass("error")}),f.on("click keypress dblclick",p).css("cursor","pointer").keydown(function(e){var t=!0,i=g($(e.target),e.which);i.length>0?i.focus():e.which===a?p(!1):17===e.which||91===e.which||93===e.which?(p(!0),t=!1):t=!1,t&&(e.stopPropagation(),e.preventDefault())}),f.find("td").prop("tabindex",1),$(window).on("resize",function(){c.is(":visible")&&c.offset(t.offset()).width(t.width()).height(t.height())})})},$.fn.editableTableWidget.defaultOptions={cloneProperties:["padding","padding-top","padding-bottom","padding-left","padding-right","text-align","font","font-size","font-family","font-weight","border","border-top","border-bottom","border-left","border-right"],editor:$("<input>")};
+  $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal();
+  });
 
 </script>
 </html>

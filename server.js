@@ -6,10 +6,13 @@ var express = require('express'),
     mongoose = require('mongoose'),
     auth = require('./resources/auth'),
     User = require('./models/user'),
-    Post = require('./models/post');
+    Post = require('./models/post'),
+    google = require('google')
+
 
 // require and load dotenv
 require('dotenv').load();
+
 
 // configure bodyParser (for receiving form data)
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,8 +24,8 @@ app.use(express.static(__dirname + '/public'));
 // set view engine to hbs (handlebars)
 app.set('view engine', 'hbs');
 
-// connect to mongodb
-mongoose.connect('mongodb://localhost/angular_auth');
+// set up models
+var db = require('./models');
 
 
 /*
@@ -49,30 +52,58 @@ app.put('/api/me', auth.ensureAuthenticated, function (req, res) {
   });
 });
 
-// app.get('/api/posts', function (req, res) {
-//   Post.find(function (err, allPosts) {
-//     if (err) {
-//       res.status(500).json({ error: err.message });
-//     } else {
-//       res.json(allPosts);
-//     }
-//   });
-// });
-//
-// app.post('/api/posts', auth.ensureAuthenticated, function (req, res) {
-//   User.findById(req.user, function (err, user) {
-//     var newPost = new Post(req.body);
-//     newPost.save(function (err, savedPost) {
-//       if (err) {
-//         res.status(500).json({ error: err.message });
-//       } else {
-//         user.posts.push(newPost);
-//         user.save();
-//         res.json(savedPost);
-//       }
-//     });
-//   });
-// });
+app.post('/api/leads', function (req, res) {
+    console.log("posting to leads API")
+
+
+    // Google Results
+
+    // google.resultsPerPage = 25
+    // var nextCounter = 0
+    //
+    // google('Linkedin Anthony Schurz', function (err, res){
+    //   if (err) console.error(err)
+    //
+    //   for (var i = 0; i < res.links.length; ++i) {
+    //     var link = res.links[i];
+    //     console.log(link.title + ' - ' + link.href)
+    //     console.log(link.description + "\n")
+    //   }
+    //
+    //   if (nextCounter < 4) {
+    //     nextCounter += 1
+    //     if (res.next) res.next()
+    //   }
+    // })
+
+    var newLead = new db.Lead({
+
+      firstName: req.body.firstname,
+      lastName: req.body.lastname,
+      email: req.body.email,
+      phoneNo: req.body.phonenumber,
+      jobTitle: req.body.jobtitle,
+      company: req.body.company
+
+    });
+
+
+    newLead.save(function(err, lead){
+      if (err) {
+        return console.log("save error: " + err);
+      }
+      console.log("saved ", lead.firstname);
+      res.json(lead);
+    });
+
+});
+
+
+app.get('/api/leads', auth.ensureAuthenticated, function (req, res) {
+    console.log("getting from leads API")
+
+});
+
 
 
 /*
@@ -112,6 +143,7 @@ app.post('/auth/login', function (req, res) {
     });
   });
 });
+
 
 
 /*
