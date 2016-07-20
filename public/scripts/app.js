@@ -193,6 +193,9 @@ function DataController($scope) {
      method: 'POST',
      url: '/api/leads',
      data: data,
+     success: function(msg){
+       console.log(msg);
+     }
     });
 
     //For each row, post to api/leads to create a new lead.

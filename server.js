@@ -56,45 +56,56 @@ app.post('/api/leads', function (req, res) {
     console.log("posting to leads API")
 
 
-    // Google Results
 
-    // google.resultsPerPage = 25
-    // var nextCounter = 0
-    //
-    // google('Linkedin Anthony Schurz', function (err, res){
-    //   if (err) console.error(err)
-    //
-    //   for (var i = 0; i < res.links.length; ++i) {
-    //     var link = res.links[i];
-    //     console.log(link.title + ' - ' + link.href)
-    //     console.log(link.description + "\n")
-    //   }
-    //
-    //   if (nextCounter < 4) {
-    //     nextCounter += 1
-    //     if (res.next) res.next()
-    //   }
-    // })
 
     req.body.leads.forEach(function(lead){
-      console.log(lead);
+
+
+      // Google Scraper
+
+      google.resultsPerPage = 5
+
+      var query = "linkedin " + lead.firstName + " " + lead.lastName
+      console.log(query)
+      google(query, function (err, res){
+        if (err) console.error(err)
+
+        var link = res.links[0];
+
+        lead.jobTitle = link.body
+
+        
+        console.log("link.body:", link.body);
+        console.log("lead.jobTitle:", lead.jobTitle);
+
+
+      })
+
+      // End Google Scraper
+
 
       var newLead = new db.Lead({
 
-        firstName: lead.firstname,
-        lastName: lead.lastname,
+        firstName: lead.firstName,
+        lastName: lead.lastName,
         email: lead.email,
         location: lead.location,
-        jobTitle: lead.jobtitle,
+        jobTitle: lead.jobTitle,
         company: lead.company
 
       });
 
+      console.log(newLead.jobTitle)
+
       newLead.save(function(err){
-        if (err) {
-          return console.log("save error: " + err);
-        }
-        console.log("saved ", lead.firstName);
+        // if (err) {
+        //   console.log("save error: " + err);
+        //   res.send('ERROR');
+        // }
+        // else {
+        //   console.log("saved ", lead.firstName);
+        //   res.send("SUCCESS!")
+        // }
       });
     });
 
