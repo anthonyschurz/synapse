@@ -10,4 +10,6 @@ var leadSchema = new Lead({
   company: { type: String }
 });
 
-var Post = mongoose.model('Lead', leadSchema);
+var Lead = mongoose.model('Lead', leadSchema);
+
+module.exports = Lead;

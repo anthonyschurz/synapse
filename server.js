@@ -24,8 +24,8 @@ app.use(express.static(__dirname + '/public'));
 // set view engine to hbs (handlebars)
 app.set('view engine', 'hbs');
 
-// connect to mongodb
-mongoose.connect('mongodb://localhost/synapse');
+// set up models
+var db = require('./models');
 
 
 /*
@@ -55,6 +55,7 @@ app.put('/api/me', auth.ensureAuthenticated, function (req, res) {
 app.post('/api/leads', function (req, res) {
     console.log("posting to leads API")
 
+
     // Google Results
 
     // google.resultsPerPage = 25
@@ -75,26 +76,32 @@ app.post('/api/leads', function (req, res) {
     //   }
     // })
 
-    // var lead = new Lead({
-    //   firstName: ,
-    //   lastName: ,
-    //   email: ,
-    //   phoneNo: ,
-    //   jobTitle: ,
-    //   company:
-    // });
+    var newLead = new db.Lead({
 
-    // user.save(function (err, result) {
-    //   if (err) {
-    //     res.status(500).send({ message: err.message });
-    //   }
-    //   res.send({ token: auth.createJWT(result) });
-    // });
+      firstName: req.body.firstname,
+      lastName: req.body.lastname,
+      email: req.body.email,
+      phoneNo: req.body.phonenumber,
+      jobTitle: req.body.jobtitle,
+      company: req.body.company
+
+    });
+
+
+    newLead.save(function(err, lead){
+      if (err) {
+        return console.log("save error: " + err);
+      }
+      console.log("saved ", lead.firstname);
+      res.json(lead);
+    });
+
 });
 
 
 app.get('/api/leads', auth.ensureAuthenticated, function (req, res) {
     console.log("getting from leads API")
+
 });
 
 
