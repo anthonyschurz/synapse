@@ -123,14 +123,21 @@ function DataController($scope) {
   var getTableAsArray = function(){
     var csvdata=[];
       $('#csv-table tr').each(function(indx,val){
-        var rowdata=[];
+
+        var rowdata={};
         csvdata.push(rowdata);
         $(this).children('td').each(function(i,v){
-          rowdata.push($('table th').eq($(this).index()).attr('id') + ": " + $(v).html());
+          var id = $('table th').eq($(this).index()).attr('id');
+          if(id){
+            rowdata[id] = $(v).html();
+          }
         })
+
       })
       return csvdata;
     }
+
+
 
 
   var download = function(data){
@@ -178,14 +185,15 @@ function DataController($scope) {
 
   $('#upload').click(function(){
     var csvdata = getTableAsArray();
-    var data = JSON.stringify(csvdata);
-    console.log(csvdata);
+    var data = {};
+    data['leads'] = csvdata
+    console.log(data);
 
     $.ajax({
      method: 'POST',
      url: '/api/leads',
-     data: $(this).serializeArray(),
-   });
+     data: data,
+    });
 
     //For each row, post to api/leads to create a new lead.
 

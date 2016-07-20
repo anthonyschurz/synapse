@@ -76,25 +76,28 @@ app.post('/api/leads', function (req, res) {
     //   }
     // })
 
-    var newLead = new db.Lead({
+    req.body.leads.forEach(function(lead){
+      console.log(lead);
 
-      firstName: req.body.firstname,
-      lastName: req.body.lastname,
-      email: req.body.email,
-      phoneNo: req.body.phonenumber,
-      jobTitle: req.body.jobtitle,
-      company: req.body.company
+      var newLead = new db.Lead({
 
+        firstName: lead.firstname,
+        lastName: lead.lastname,
+        email: lead.email,
+        location: lead.location,
+        jobTitle: lead.jobtitle,
+        company: lead.company
+
+      });
+
+      newLead.save(function(err){
+        if (err) {
+          return console.log("save error: " + err);
+        }
+        console.log("saved ", lead.firstName);
+      });
     });
 
-
-    newLead.save(function(err, lead){
-      if (err) {
-        return console.log("save error: " + err);
-      }
-      console.log("saved ", lead.firstname);
-      res.json(lead);
-    });
 
 });
 
