@@ -195,10 +195,9 @@ function DataController($scope) {
      data: data,
      success: function(msg){
        console.log(msg);
+       $('td:nth-child(2)').css( "color", "red" );
      }
     });
-
-    //For each row, post to api/leads to create a new lead.
 
 
    $('#notification').html(csvdata.toString());

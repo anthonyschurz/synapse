@@ -71,11 +71,14 @@ app.post('/api/leads', function (req, response) {
 
         var link = res.links[0];
 
-        lead.jobTitle = link.href
+        lead.linkedin = link.href
 
-        linkedinarray.push(link.href);
+        var nameData = lead.firstName + " " + " " + lead.lastName + " " + lead.email + " " + lead.location + " " + lead.linkedin;
+
+        linkedinarray.push(nameData);
+
         console.log(linkedinarray);
-        console.log("lead.jobTitle:", lead.jobTitle);
+        console.log("lead.linkedin:", lead.linkedin);
         if(req.body.leads.length == linkedinarray.length){
           response.send(linkedinarray);
           console.log(linkedinarray);
@@ -84,19 +87,13 @@ app.post('/api/leads', function (req, response) {
       });
 
 
-
-
-      // End Google Scraper
-
-
       var newLead = new db.Lead({
 
         firstName: lead.firstName,
         lastName: lead.lastName,
         email: lead.email,
         location: lead.location,
-        jobTitle: lead.jobTitle,
-        company: lead.company
+        linkedin: lead.linkedin
 
       });
 
@@ -107,8 +104,6 @@ app.post('/api/leads', function (req, response) {
         }
 
       });
-
-
 
       })
 
@@ -138,11 +133,11 @@ app.post('/api/leads', function (req, response) {
 //
 //       var link = res.links[0];
 //
-//       lead.jobTitle = link.href
+//       lead.linkedin = link.href
 //
 //       linkedinarray.push(link.href);
 //       // console.log(linkedinarray);
-//       // console.log("lead.jobTitle:", lead.jobTitle);
+//       // console.log("lead.linkedin:", lead.linkedin);
 //
 //     });
 //

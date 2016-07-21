@@ -80,6 +80,12 @@ textarea::-webkit-input-placeholder {
 }
 
 
+.upload {
+  font-size: 18px;
+  height: 42px !important;
+  padding: 4px 38px 0 38px;
+}
+
 .clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}
 .clearfix:after{clear:both;}
 .hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;}

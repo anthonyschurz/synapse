@@ -6,8 +6,7 @@ var leadSchema = new Schema({
   lastName: { type: String },
   email: { type: String },
   location: { type: String },
-  jobTitle: { type: String },
-  company: { type: String }
+  linkedin: { type: String }
 });
 
 var Lead = mongoose.model('Lead', leadSchema);
