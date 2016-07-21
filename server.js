@@ -73,15 +73,13 @@ app.post('/api/leads', function (req, response) {
 
         lead.linkedin = link.href
 
-        var nameData = "<tr>" + "<td>" + lead.firstName + "</td>" + "<td>" + lead.lastName + "</td>" + "<td>" + lead.email + "</td>" + "<td>" + lead.location + "</td>" + "<td>" + lead.linkedin + "</td>" + "</tr>";
+        var nameData = "<tr>" + "<td>" + lead.firstName + "</td>" + "<td>" + lead.lastName + "</td>" + "<td>" + lead.email + "</td>" + "<td>" + lead.location + "</td>" + "<td>" + "<a href='"+ lead.linkedin + "'>" + lead.linkedin + "</a>" + "</td>" + "</tr>";
 
         linkedinarray.push(nameData);
 
-        console.log(linkedinarray);
-        console.log("lead.linkedin:", lead.linkedin);
+
         if(req.body.leads.length == linkedinarray.length){
           response.send(linkedinarray);
-          console.log(linkedinarray);
 
         }
       });
@@ -109,42 +107,6 @@ app.post('/api/leads', function (req, response) {
 
     });
 
-//
-// });
-
-
-// var googleSearch = function(leads){
-//
-//   var deferred = q.defer();
-//
-//   leads.forEach(function(lead){
-//
-//     // Google Scraper
-//
-//     google.resultsPerPage = 5
-//
-//     var sites = ['linkedin', 'facebook', 'twitter']
-//
-//     var query = "linkedin " + lead.firstName + " " + lead.lastName + " " + lead.location
-//     console.log(query)
-//
-//     google(query, function (err, res){
-//       if (err) console.error(err)
-//
-//       var link = res.links[0];
-//
-//       lead.linkedin = link.href
-//
-//       linkedinarray.push(link.href);
-//       // console.log(linkedinarray);
-//       // console.log("lead.linkedin:", lead.linkedin);
-//
-//     });
-//
-// })
-
-// return deferred.promise;
-// }
 
 app.get('/api/leads', auth.ensureAuthenticated, function (req, res) {
     console.log("getting from leads API")

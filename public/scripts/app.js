@@ -138,8 +138,6 @@ function DataController($scope) {
     }
 
 
-
-
   var download = function(data){
     var csvContent = "data:text/csv;charset=utf-8,";
     data.forEach(function(infoArray, index){
