@@ -194,8 +194,9 @@ function DataController($scope) {
      url: '/api/leads',
      data: data,
      success: function(msg){
+       $("table").find("tr:gt(0)").remove();
        for(i=0; i < msg.length; i++)
-       $('tr:nth-child(4)').append( msg[i] );
+       $('table').append( msg[i] );
      }
     });
 
