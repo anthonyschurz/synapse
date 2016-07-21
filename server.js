@@ -7,7 +7,8 @@ var express = require('express'),
     auth = require('./resources/auth'),
     User = require('./models/user'),
     Post = require('./models/post'),
-    google = require('google')
+    google = require('google'),
+    q = require('q')
 
 
 // require and load dotenv
@@ -52,34 +53,38 @@ app.put('/api/me', auth.ensureAuthenticated, function (req, res) {
   });
 });
 
-app.post('/api/leads', function (req, res) {
+app.post('/api/leads', function (req, response) {
     console.log("posting to leads API")
-
-
-
-
+    var linkedinarray = [];
     req.body.leads.forEach(function(lead){
-
-
+      console.log(linkedinarray.length)
       // Google Scraper
-
       google.resultsPerPage = 5
 
-      var query = "linkedin " + lead.firstName + " " + lead.lastName
+      var sites = ['linkedin', 'facebook', 'twitter']
+
+      var query = "linkedin " + lead.firstName + " " + lead.lastName + " " + lead.location
       console.log(query)
+
       google(query, function (err, res){
         if (err) console.error(err)
 
         var link = res.links[0];
 
-        lead.jobTitle = link.body
+        lead.jobTitle = link.href
 
-        
-        console.log("link.body:", link.body);
+        linkedinarray.push(link.href);
+        console.log(linkedinarray);
         console.log("lead.jobTitle:", lead.jobTitle);
+        if(req.body.leads.length == linkedinarray.length){
+          response.send(linkedinarray);
+          console.log(linkedinarray);
+
+        }
+      });
 
 
-      })
+
 
       // End Google Scraper
 
@@ -95,23 +100,56 @@ app.post('/api/leads', function (req, res) {
 
       });
 
-      console.log(newLead.jobTitle)
 
       newLead.save(function(err){
-        // if (err) {
-        //   console.log("save error: " + err);
-        //   res.send('ERROR');
-        // }
-        // else {
-        //   console.log("saved ", lead.firstName);
-        //   res.send("SUCCESS!")
-        // }
+        if(err) {
+          res.status(500).send({message: err.message})
+        }
+
       });
+
+
+
+      })
+
     });
 
+//
+// });
 
-});
 
+// var googleSearch = function(leads){
+//
+//   var deferred = q.defer();
+//
+//   leads.forEach(function(lead){
+//
+//     // Google Scraper
+//
+//     google.resultsPerPage = 5
+//
+//     var sites = ['linkedin', 'facebook', 'twitter']
+//
+//     var query = "linkedin " + lead.firstName + " " + lead.lastName + " " + lead.location
+//     console.log(query)
+//
+//     google(query, function (err, res){
+//       if (err) console.error(err)
+//
+//       var link = res.links[0];
+//
+//       lead.jobTitle = link.href
+//
+//       linkedinarray.push(link.href);
+//       // console.log(linkedinarray);
+//       // console.log("lead.jobTitle:", lead.jobTitle);
+//
+//     });
+//
+// })
+
+// return deferred.promise;
+// }
 
 app.get('/api/leads', auth.ensureAuthenticated, function (req, res) {
     console.log("getting from leads API")
