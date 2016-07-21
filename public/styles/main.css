@@ -76,14 +76,14 @@ textarea::-webkit-input-placeholder {
 
 #savebutton {
   float: right;
-  padding: 20px;
+  padding: 20px 90px 20px 10px;
 }
 
 
 .upload {
   font-size: 18px;
-  height: 42px !important;
-  padding: 4px 38px 0 38px;
+  height: 45px !important;
+  padding: 5px 38px 0 38px;
 }
 
 .clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}

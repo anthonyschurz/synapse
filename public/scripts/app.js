@@ -194,8 +194,8 @@ function DataController($scope) {
      url: '/api/leads',
      data: data,
      success: function(msg){
-       console.log(msg);
-       $('td:nth-child(2)').css( "color", "red" );
+       for(i=0; i < msg.length; i++)
+       $('tr:nth-child(4)').append( msg[i] );
      }
     });
 
