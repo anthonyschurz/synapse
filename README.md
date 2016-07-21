@@ -25,7 +25,7 @@ You provide the person's first and last name as well as email and location (if y
 * Object Oriented Programming 
 * Full Stack Development
 
-##Screenshot of the app
+#Screenshot of the app
 
 ![alt tag](http://i.imgur.com/YSm41ub.png)
 
