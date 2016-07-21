@@ -73,7 +73,7 @@ app.post('/api/leads', function (req, response) {
 
         lead.linkedin = link.href
 
-        var nameData = "<tr>" + "<td>" + lead.firstName + "</td>" + "<td>" + lead.lastName + "</td>" + "<td>" + lead.email + "</td>" + "<td>" + lead.location + "</td>" + "<td>" + "<a href='"+ lead.linkedin + "'>" + lead.linkedin + "</a>" + "</td>" + "</tr>";
+        var nameData = "<tr>" + "<td>" + lead.firstName + "</td>" + "<td>" + lead.lastName + "</td>" + "<td>" + lead.email + "</td>" + "<td>" + lead.location + "</td>" + "<td class='animated rubberBand'>" + "<a href='"+ lead.linkedin + "'>" + lead.linkedin + "</a>" + "</td>" + "</tr>";
 
         linkedinarray.push(nameData);
 
