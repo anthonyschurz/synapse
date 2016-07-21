@@ -3,7 +3,7 @@ This is my final project for my web development course at General Assembly.
 
 Whether you’re looking to supercharge your CRM with job title information, build marketing segments based on occupation, or pass along candidates to recruiting, Synapse is the enterprise app that allows you to append the latest firmographic information without spending a ton of time searching.
 
-You provide the person's first and last name as well as email and phone number (if you have them) and synapse provides the rest.
+You provide the person's first and last name as well as email and location (if you have them) and synapse provides the rest.
 
 ![alt tag](https://i.ytimg.com/vi/mItV4rC57kM/maxresdefault.jpg)
 
@@ -24,6 +24,11 @@ You provide the person's first and last name as well as email and phone number (
 * MVC
 * Object Oriented Programming 
 * Full Stack Development
+
+##Screenshot of the app
+
+![alt tag](http://i.imgur.com/YSm41ub.png)
+
 
 #Users
 
