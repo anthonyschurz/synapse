@@ -86,6 +86,10 @@ textarea::-webkit-input-placeholder {
   padding: 5px 38px 0 38px;
 }
 
+.btn:active {
+  transform: translateY(4px);
+}
+
 .clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}
 .clearfix:after{clear:both;}
 .hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;}

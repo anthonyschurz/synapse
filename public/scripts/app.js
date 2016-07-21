@@ -118,7 +118,6 @@ function MainController (Account) {
 
 function DataController($scope) {
   angular.element(document).ready(function () {
-  console.log("heyo Anthony")
 
   var getTableAsArray = function(){
     var csvdata=[];
@@ -177,11 +176,13 @@ function DataController($scope) {
 
 
   $('#export').click(function(){
+    console.log("download");
     download(getTableAsArray());
   })
 
 
   $('#upload').click(function(){
+
     var csvdata = getTableAsArray();
     var data = {};
     data['leads'] = csvdata
