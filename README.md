@@ -55,4 +55,4 @@ The main dependency is a Google scraping module called node-google by @jprichard
 
 #Shout Outs
 
-Shout outs to the other members of team Triple A: Annabelle Thaddeus and Alex White.
+Shout outs to the other members of team Triple A: Annabelle Thaddeus and Alex White. Special thanks to Justin Mardjuki for the logo design.
