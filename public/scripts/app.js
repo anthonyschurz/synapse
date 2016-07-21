@@ -140,7 +140,11 @@ function DataController($scope) {
   var download = function(data){
     var csvContent = "data:text/csv;charset=utf-8,";
     data.forEach(function(infoArray, index){
-      dataString = infoArray.join(",");
+    var array = $.map(infoArray, function(value, index) {
+            return [value];
+        });
+
+      window.dataString = array;
       csvContent += index < data.length ? dataString+ "\n" : dataString;
     });
     var encodedUri = encodeURI(csvContent);
