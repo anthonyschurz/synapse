@@ -57,7 +57,7 @@ app.post('/api/leads', function (req, response) {
     req.body.leads.forEach(function(lead){
       google.resultsPerPage = 5
 
-      var sites = ['linkedin', 'facebook', 'twitter']
+      var sites = ['linkedin', 'facebook', 'twitter', 'github']
 
       var query = "linkedin " + lead.firstName + " " + lead.lastName + " " + lead.location
       console.log(query)
@@ -138,11 +138,11 @@ app.post('/auth/signup', function (req, res) {
 app.post('/auth/login', function (req, res) {
   User.findOne({ email: req.body.email }, '+password', function (err, user) {
     if (!user) {
-      return res.status(401).send({ message: 'Invalid email or password.' });
+      return res.status(401).send({ message: 'Invalid email or password. Plz try again :)' });
     }
     user.comparePassword(req.body.password, function (err, isMatch) {
       if (!isMatch) {
-        return res.status(401).send({ message: 'Invalid email or password.' });
+        return res.status(401).send({ message: 'Invalid email or password. Plz try again :)' });
       }
       res.send({ token: auth.createJWT(user) });
     });
