@@ -7,9 +7,7 @@ var express = require('express'),
     auth = require('./resources/auth'),
     User = require('./models/user'),
     Post = require('./models/post'),
-    google = require('google'),
-    q = require('q')
-
+    google = require('google')
 
 // require and load dotenv
 require('dotenv').load();
@@ -57,8 +55,6 @@ app.post('/api/leads', function (req, response) {
     console.log("posting to leads API")
     var linkedinarray = [];
     req.body.leads.forEach(function(lead){
-      console.log(linkedinarray.length)
-      // Google Scraper
       google.resultsPerPage = 5
 
       var sites = ['linkedin', 'facebook', 'twitter']

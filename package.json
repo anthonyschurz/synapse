@@ -19,7 +19,5 @@
     "jwt-simple": "^0.4.1",
     "moment": "^2.11.1",
     "mongoose": "^4.3.7",
-    "papaparse": "^4.1.2",
-    "q": "^1.4.1"
-  }
+    "papaparse": "^4.1.2"  }
 }
