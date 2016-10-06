@@ -59,7 +59,7 @@ app.post('/api/leads', function (req, response) {
       // Google Scraper
       google.resultsPerPage = 5
 
-      var sites = ['linkedin', 'facebook', 'twitter']
+      // var sites = ['linkedin', 'facebook', 'twitter']
 
       var query = "linkedin " + lead.firstName + " " + lead.lastName + " " + lead.location
       console.log(query)
