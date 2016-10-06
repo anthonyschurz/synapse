@@ -7,8 +7,7 @@ var express = require('express'),
     auth = require('./resources/auth'),
     User = require('./models/user'),
     Post = require('./models/post'),
-    google = require('google'),
-    request = require('request')
+    google = require('google')
 
 // require and load dotenv
 require('dotenv').load();
