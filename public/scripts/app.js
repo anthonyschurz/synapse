@@ -32,6 +32,8 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
   // for any unmatched URL redirect to /
   $urlRouterProvider.otherwise("/");
 
+  // user states
+
   $stateProvider
     .state('home', {
       url: '/',
@@ -131,52 +133,54 @@ function DataController($scope) {
             rowdata[id] = $(v).html();
           }
         })
-
       })
-      return csvdata;
+    return csvdata;
     }
 
 
   var download = function(data){
     var csvContent = "data:text/csv;charset=utf-8,";
+
     data.forEach(function(infoArray, index){
-    var array = $.map(infoArray, function(value, index) {
+
+      var array = $.map(infoArray, function(value, index) {
             return [value];
-        });
+      });
 
       window.dataString = array;
       csvContent += index < data.length ? dataString+ "\n" : dataString;
-    });
-    var encodedUri = encodeURI(csvContent);
-    var link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "data.csv");
-    link.click();
-  }
+
+      });
+
+      var encodedUri = encodeURI(csvContent);
+      var link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "data.csv");
+      link.click();
+    }
 
   $('#csv-file').on('change',function(){
      if (this.files.length) {
        Papa.parse(this.files[0], {
-    complete: function(results) {
+         complete: function(results) {
 
-  $.each(results.data,
-         function( index, value ) {
-   var row = $('<tr>');
+            $.each(results.data, function( index, value ) {
+                var row = $('<tr>');
 
-  $('#csv-table').append(row);
-   $.each(value,function(i,v){
-          var col = $('<td>');
-          col.html(v);
-          row.append(col);
-         });
-  });
-  $('#csv-table').editableTableWidget();
+                $('#csv-table').append(row);
+                $.each(value,function(i,v){
+                    var col = $('<td>');
+                    col.html(v);
+                    row.append(col);
+                   });
+              });
 
-    }
-  });
-      ;
-     }
-  })
+              $('#csv-table').editableTableWidget();
+
+          }
+        });
+      }
+    })
 
 
   $('#export').click(function(){
@@ -204,7 +208,8 @@ function DataController($scope) {
     });
 
 
-   $('#notification').html(csvdata.toString());
+      $('#notification').html(csvdata.toString());
+
       });
     });
 
