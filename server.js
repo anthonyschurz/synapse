@@ -65,19 +65,12 @@ app.post('/api/leads', function (req, response) {
 
       google(query, function (err, res){
         if (err) console.error(err)
-
         var link = res.links[0];
-
         lead.linkedin = link.href
-
         var nameData = "<tr>" + "<td>" + lead.firstName + "</td>" + "<td>" + lead.lastName + "</td>" + "<td>" + lead.email + "</td>" + "<td>" + lead.location + "</td>" + "<td class='animated rubberBand'>" + "<a href='"+ lead.linkedin + "'>" + lead.linkedin + "</a>" + "</td>" + "</tr>";
-
         linkedinarray.push(nameData);
-
-
         if(req.body.leads.length == linkedinarray.length){
           response.send(linkedinarray);
-
         }
       });
 
@@ -107,7 +100,6 @@ app.post('/api/leads', function (req, response) {
 
 app.get('/api/leads', auth.ensureAuthenticated, function (req, res) {
     console.log("getting from leads API")
-
 });
 
 

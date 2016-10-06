@@ -23,7 +23,6 @@ angular
 configRoutes.$inject = ["$stateProvider", "$urlRouterProvider", "$locationProvider"]; // minification protection
 function configRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
 
-  //this allows us to use routes without hash params!
   $locationProvider.html5Mode({
     enabled: true,
     requireBase: false
@@ -120,15 +119,16 @@ function DataController($scope) {
   angular.element(document).ready(function () {
 
   var getTableAsArray = function(){
-    var csvdata=[];
-      $('#csv-table tr').each(function(indx,val){
+  var csvdata=[];
+  $('#csv-table tr').each(function(indx,val){
+      var rowdata={};
+      csvdata.push(rowdata);
+      $(this).children('td').each(function(i,v){
+        var id = $('table th').eq($(this).index()).attr('id');
+        if(id){
 
-        var rowdata={};
-        csvdata.push(rowdata);
-        $(this).children('td').each(function(i,v){
-          var id = $('table th').eq($(this).index()).attr('id');
-          if(id){
-            rowdata[id] = $(v).html();
+          rowdata[id] = $(v).html();
+
           }
         })
 
@@ -406,5 +406,4 @@ function Account($http, $q, $auth) {
         )
     );
   }
-
 }
